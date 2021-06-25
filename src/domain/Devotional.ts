@@ -5,4 +5,5 @@ export type Devotional = {
   title: string
   reference: string
   content: string
+  slug: string
 }

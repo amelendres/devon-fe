@@ -1,27 +1,35 @@
 import React from 'react'
 import { DevotionalList } from './DevotionalList'
-// import { YearlyPlan } from '../../domain/YearlyPlan'
-import { DailyDevotional } from '../../domain/DailyDevotional'
-// import { planService } from '../../application/Plan.service'
+import { YearlyPlan } from '../../domain/YearlyPlan'
+import { planService } from '../../application/Plan.service'
 
 type AppProps = {
   msg: string
 }
 
 const App: React.FC<AppProps> = ({ msg }) => {
-  // const [YearlyPlan, setPlan] = React.useState<YearlyPlan|null>(null)
+  const [plan, setPlan] = React.useState<YearlyPlan>()
 
-  const handleShowDevotional = (devotional: DailyDevotional) => {
-    console.log(devotional)
-    // setPlan(planService.addProductToPlan(devotional, basket))
+  React.useEffect(() => {
+    planService.getCurrent().then(setPlan)
+  }, [])
+
+  if (plan === undefined) {
+    return (
+      <div className="list-items">
+        <div className="wrapper-message">
+          <span className="icon-check" />
+          <div className="title-message">Loading...</div>
+          <div className="subtitle-message">Sit back and relax</div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="App">
       <h1>{msg}</h1>
-      <DevotionalList onSelectDevotional={handleShowDevotional}/>
-
-      {/* { basket && <p>Items on basket: {basket.items.length}</p>} */}
+      <DevotionalList plan={plan}/>
     </div>
   )
 }

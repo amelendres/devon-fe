@@ -8,4 +8,5 @@ export type YearlyPlan = {
   title: string
   coverPhotoUrl: string
   items: DailyDevotional[]
+  slug: string
 }
