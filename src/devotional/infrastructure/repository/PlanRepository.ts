@@ -2,7 +2,8 @@ import { http } from '../http/http'
 // import { DailyDevotionalDTO } from '../http/dto/DailyDevotionalDTO'
 import { DailyDevotional } from '../../domain/DailyDevotional'
 import { YearlyPlan } from '../../domain/YearlyPlan'
-import { slugify } from '../../domain/Slugify'
+import { slugify } from '../../../common/domain/Slugify'
+import { defaultPlan } from '../ui/App'
 
 
 // const DEVOM_API_URL = 'https://proservant-staging.herokuapp.com/api/v1'
@@ -16,6 +17,8 @@ export const planRepository = {
   },
   current: async () => {
     const plan = await http.get<YearlyPlan>(DEVOM_API_URL+'/yearly-plans/'+YEARLY_PLAN_ID)
+    plan.description = defaultPlan.description
+    plan.author = defaultPlan.author
     return Object.assign(plan, {slug: slugify(plan.title)});
     // return plan
   }

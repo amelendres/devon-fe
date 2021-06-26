@@ -1,6 +1,6 @@
 import React from 'react';
-import { Devotional } from '../../domain/Devotional'
-import { YearlyPlan } from '../../domain/YearlyPlan'
+import { Devotional } from '../../../domain/Devotional'
+import { YearlyPlan } from '../../../domain/YearlyPlan'
 
 type DevotionalProps = {
   plan: YearlyPlan,

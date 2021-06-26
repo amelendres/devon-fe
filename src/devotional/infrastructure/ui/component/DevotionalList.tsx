@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { DevotionalItem } from './DevotionalItem'
 
-import { DailyDevotional } from '../../domain/DailyDevotional'
-import { YearlyPlan } from '../../domain/YearlyPlan'
-import { planService } from '../../application/Plan.service'
+import { DailyDevotional } from '../../../domain/DailyDevotional'
+import { YearlyPlan } from '../../../domain/YearlyPlan'
+import { planService } from '../../../application/Plan.service'
 
 type DevotionalListProps = {
   plan: YearlyPlan
