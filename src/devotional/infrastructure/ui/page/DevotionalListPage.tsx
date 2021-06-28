@@ -4,11 +4,35 @@ import HelmetMetaData from '../../../../common/infrastructure/ui/component/seo/H
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 import { app } from '../App'
 
-type DevotionalListPageProps = {
-    plan: YearlyPlan,
-  }
+import {RouteComponentProps} from "react-router-dom";
+import { planService } from '../../../application/Plan.service'
 
-export const DevotionalListPage: React.FC<DevotionalListPageProps> = ({ plan }) => {
+const CURRENT_PLAN = 'plan-2019'
+
+type TParams = { 
+  planSlug: string,
+  devotionalSlug: string,
+}
+
+export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ match }: RouteComponentProps<TParams>) => {
+
+  const [plan, setPlan] = React.useState<YearlyPlan>()
+
+  React.useEffect(() => {
+    planService.plan(CURRENT_PLAN).then(setPlan)
+  }, [])
+
+  if (plan === undefined) {
+    return (
+      <div className="list-items">
+        <div className="wrapper-message">
+          <span className="icon-check" />
+          <div className="title-message">Loading...</div>
+          <div className="subtitle-message">Sit back and relax</div>
+        </div>
+      </div>
+    );
+  }
 
       const meta = {
         title: `${plan.title} | ${app.title}`,
@@ -30,7 +54,7 @@ export const DevotionalListPage: React.FC<DevotionalListPageProps> = ({ plan }) 
                 <span className="title-wrapper">Devocionales</span>
               </h1>
             </nav>
-            <DevotionalList plan={plan}/>
+              <DevotionalList plan={plan}/>
           </div>
         </div>
       );

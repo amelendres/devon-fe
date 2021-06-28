@@ -13,8 +13,8 @@ export const DevotionalList: React.FC<DevotionalListProps> = ({ plan }) => {
   const [devotionals, setDevotionals] = React.useState<DailyDevotional[]>([])
 
   React.useEffect(() => {
-    planService.getDevotionals().then(setDevotionals)
-  }, [])
+    planService.getDevotionals(plan.slug).then(setDevotionals)
+  }, [plan.slug])
 
   const handleOpenDevotional = (slug: string) => {
     console.log(slug)

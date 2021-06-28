@@ -18,11 +18,13 @@ export const HelmetMetaData: React.FC<MetaDataProps> = ({ meta }) => {
             meta.imageUrl
         ],
         "datePublished": "2020-01-01T08:00:00+08:00",
+        "dateModified": "2020-01-01T08:00:00+08:00",
     }
 
     return (
     <Helmet>
         <title>{meta.title}</title>
+        <link rel="canonical" href={currentUrl} />
         {/* <meta charset="utf-8" /> */}
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="csrf_token" content="" />

@@ -1,7 +1,8 @@
 import React from 'react'
-import { DevotionalListPage } from './page/DevotionalListPage'
-import { YearlyPlan } from '../../domain/YearlyPlan'
-import { planService } from '../../application/Plan.service'
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { DevotionalListPage as Home } from './page/DevotionalListPage'
+import { DevotionalPage } from './page/DevotionalPage'
 
 export const app = {
   name: 'DevON',
@@ -26,28 +27,13 @@ type AppProps = {
 }
 
 const App: React.FC<AppProps> = ({ msg }) => {
-  const [plan, setPlan] = React.useState<YearlyPlan>()
-
-  React.useEffect(() => {
-    planService.getCurrent().then(setPlan)
-  }, [])
-
-  if (plan === undefined) {
-    return (
-      <div className="list-items">
-        <div className="wrapper-message">
-          <span className="icon-check" />
-          <div className="title-message">Loading...</div>
-          <div className="subtitle-message">Sit back and relax</div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="App">
       {/* <h1>{msg}</h1> */}
-      <DevotionalListPage plan={plan}/>
+      <Router>
+        <Route exact path="/" component={Home}/>
+        <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
+      </Router>
     </div>
   )
 }

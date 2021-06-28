@@ -2,14 +2,14 @@ import React from 'react';
 import { Devotional } from '../../../domain/Devotional'
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 
-type DevotionalProps = {
+type DevotionalItemProps = {
   plan: YearlyPlan,
   devotional: Devotional,
   index: number,
   onOpenDevotional: (slug: string) => void
 }
 
-export const DevotionalItem: React.FC<DevotionalProps> = ({ plan, devotional, index, onOpenDevotional }) => {
+export const DevotionalItem: React.FC<DevotionalItemProps> = ({ plan, devotional, index, onOpenDevotional }) => {
 
   const state = 'show' //showed|opened|read
   return (
