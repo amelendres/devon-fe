@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './devotional/infrastructure/ui/App'
 import reportWebVitals from './reportWebVitals';
+
+// import './index.css'
+import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>

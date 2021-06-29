@@ -1,0 +1,43 @@
+.icon-arrow-left{
+    font-family: "percolate";
+}
+
+.icon-arrow-left:before {
+    content: "\e619";
+}
+
+.devotional{
+    padding: .7rem;
+    padding-top: 55px;
+   }
+   .devotional .title{
+      line-height: 2rem;
+      text-align: center;
+      font-weight: bold;
+   }
+  
+  .devotional .passage{
+    font-family: Times;
+    font-style: italic;
+    font-size: 1.09rem;
+    line-height: 1.4rem;
+  }
+  
+  .devotional .text{
+    text-align: justify;
+  }
+  .devotional .reference{
+    text-align: right;
+  }
+  .devotional .content{
+    line-height: 1.7rem;
+  }
+  .devotional .content p{
+    margin-top: 1.5rem;
+  }
+  .pt20{
+     padding-top:20px;
+   }
+  .pt10{
+      padding-top:10px;
+  }

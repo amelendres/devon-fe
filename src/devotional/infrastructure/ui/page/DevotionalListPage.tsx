@@ -7,6 +7,8 @@ import { app } from '../App'
 import {RouteComponentProps} from "react-router-dom";
 import { planService } from '../../../application/Plan.service'
 
+import {history} from '../../../../common/domain/history'
+
 const CURRENT_PLAN = 'plan-2019'
 
 type TParams = { 
@@ -21,6 +23,8 @@ export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ mat
   React.useEffect(() => {
     planService.plan(CURRENT_PLAN).then(setPlan)
   }, [])
+
+  history.push('/');
 
   if (plan === undefined) {
     return (
@@ -51,7 +55,7 @@ export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ mat
           <div className="page lists-show">
             <nav>
               <h1 className="title-page">
-                <span className="title-wrapper">Devocionales</span>
+                <span className="_title-wrapper">Devocionales</span>
               </h1>
             </nav>
               <DevotionalList plan={plan}/>

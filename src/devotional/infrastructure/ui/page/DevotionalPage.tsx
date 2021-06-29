@@ -9,6 +9,8 @@ import { RouteComponentProps } from "react-router-dom";
 import { DailyDevotional } from '../../../domain/DailyDevotional'
 import { planService } from '../../../application/Plan.service'
 
+import {history} from '../../../../common/domain/history'
+
 type TParams = { 
   planSlug: string,
   devotionalSlug: string
@@ -23,6 +25,12 @@ export const DevotionalPage: React.FC<RouteComponentProps<TParams>> = ({ match }
     planService.plan(match.params.planSlug).then(setPlan)
     planService.dailyDevotional(match.params.planSlug, match.params.devotionalSlug).then(setDailyDevotional)
   }, [match.params.devotionalSlug, match.params.planSlug])
+
+  const list = () => {
+    console.log("list: location %s", history.location)
+    history.location ? history.back() : history.push('/')
+    return;
+  }
 
   if (plan  === undefined || dailyDevotional === undefined) {
     return (
@@ -59,9 +67,9 @@ export const DevotionalPage: React.FC<RouteComponentProps<TParams>> = ({ match }
 
           <div className="page lists-show">
             <nav>
-              {/* <button className={`left icon-arrow-left`} onClick={()=>this.list()} /> */}
+              <button className={`left icon-arrow-left`} onClick={()=>list()} />
               <h1 className="title-page">
-                <span className="title-wrapper">#{index} </span>
+                <span className="_title-wrapper">#{index} </span>
               </h1>
               <button className={`right icon-share`} onClick={()=>sharer.share(sharable)} />
             </nav>
