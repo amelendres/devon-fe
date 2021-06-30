@@ -1,11 +1,11 @@
 import React from 'react'
+import { RouteComponentProps } from "react-router-dom";
 import {DevotionalOpen} from '../component/DevotionalOpen'
 import HelmetMetaData from '../../../../common/infrastructure/ui/component/seo/HelmetMetaData'
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 import { app } from '../App'
 import { Share } from '../../../../common/domain/intent/Share'
 
-import { RouteComponentProps } from "react-router-dom";
 import { DailyDevotional } from '../../../domain/DailyDevotional'
 import { planService } from '../../../application/Plan.service'
 
@@ -27,8 +27,9 @@ export const DevotionalPage: React.FC<RouteComponentProps<TParams>> = ({ match }
   }, [match.params.devotionalSlug, match.params.planSlug])
 
   const list = () => {
-    console.log("list: location %s", history.location)
-    history.location ? history.back() : history.push('/')
+    // console.log("list: location %s", history.location)
+    // history.location ? history.back() : history.push('/')
+    history.back()
     return;
   }
 

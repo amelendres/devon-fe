@@ -5,10 +5,10 @@ $column: 5.55555%;
 
 body {
   @include position(absolute, 0, 0, 0, 0);
-  // background-color: #315481;
-  // background-image: linear-gradient(to bottom, #315481, #918e82 100%);
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
+  background-color: #315481;
+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #container {
@@ -40,7 +40,9 @@ body {
   opacity: 1;
 
   .page {
-    @include position(absolute, 0, 0, 0, 0);
+    // @include position(absolute, 0, 0, 0, 0);
+    background: white;
+    min-height: 100vh;
   }
 
   @media screen and (min-width: 40em) {

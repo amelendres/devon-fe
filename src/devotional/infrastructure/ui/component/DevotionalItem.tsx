@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 import { Devotional } from '../../../domain/Devotional'
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 
@@ -13,14 +15,13 @@ export const DevotionalItem: React.FC<DevotionalItemProps> = ({ plan, devotional
 
   const state = 'show' //showed|opened|read
   return (
-    <div className={`list-item ${state}`} onClick={() => onOpenDevotional(devotional.slug)} >
-      <div className="index">
-        {index}
+    <div className={`list-item ${state}`} id={`item_${index}`} onClick={() => onOpenDevotional(devotional.slug)} >
+       <div className="index">
+        <Link to={`/${plan.slug}/${devotional.slug}`}>{index}</Link>
       </div>
       <div className="title">
-        <a href={`/${plan.slug}/${devotional.slug}`}>{devotional.title}</a>
+        <Link to={`/${plan.slug}/${devotional.slug}`}>{devotional.title}</Link>
       </div>
-
       <div className="actions" onClick={event => event.stopPropagation()}>
         {/* {state !== 'DEVOTIONAL_PINNED' && ( */}
           <button className={`icon-star`}  />

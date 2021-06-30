@@ -1,48 +1,6 @@
-// @import '../stylesheet/utils.scss';
 @import '../stylesheet/sass/utils.scss';
 
-.list-item .title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex: 1 1;
-}
-
-.list-item .actions {
-  transition: all .2s ease-in;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.list-item .title a{
-  background: transparent;
-  width: 100%;
-  font-size: .88rem;
-  line-height: 1.5rem;
-  padding: .75rem 0;
-  display: inline-block;
-  color: #333;
-}
-.list-item .index {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-top: .7rem;
-  line-height: 1.5rem;
-  font-size: 1.4rem;
-  width: 2.8rem;
-  text-align: center;
-}
-.list-item .index a {
-  color: lightgray;
-}
-
-.list-item .actions .icon-star {
-  color: #eee;
-  background: transparent;
- }
-
- @font-face {
+@font-face {
   font-family: "percolate";
   src: url("/icon/percolate.eot?-5w3um4");
   src: url("/icon/percolate.eot?#iefix5w3um4") format("embedded-opentype"), 
@@ -53,29 +11,75 @@
   font-style: normal;
 }
 
- .list-item .actions [class^=icon-] {
-  font-family: "percolate";
-  font-size: 16px;
-  // line-height: 24px;
-  line-height: 3rem;
-  text-align: center;
-}
+.list-item {
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1;
+  }
 
-.list-item .actions .icon-star:before {
-    content: "\e608";
- }
+  .title a{
+    background: transparent;
+    width: 100%;
+    font-size: .88rem;
+    line-height: 1.5rem;
+    padding: .75rem 0;
+    display: inline-block;
+    color: #333;
+  }
+  .index {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: .7rem;
+    line-height: 1.5rem;
+    font-size: 1.4rem;
+    width: 2.8rem;
+    text-align: center;
 
- .list-item.DEVOTIONAL_PINNED .icon-star {
-  color: #2cc5d2;
-}
-.list-item.DEVOTIONAL_READ input[type="text"] {
-  color: #aaa;
+    a {
+      color: lightgray;
+    }    
+  }
+
+  .actions{
+    transition: all .2s ease-in;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+    [class^=icon-] {
+      font-family: "percolate";
+      font-size: 16px;
+      // line-height: 24px;
+      line-height: 3rem;
+      text-align: center;
+    }
+
+    .icon-star {
+      color: #eee;
+      background: transparent;
+
+      &:before {
+        content: "\e608";
+      }
+    }
+  }
+
+
+  &.DEVOTIONAL_PINNED{
+    .icon-star {
+      color: #2cc5d2;
+    }
+  } 
+  &.DEVOTIONAL_READ{
+    input[type="text"] {
+      color: #aaa;
+    }
+  } 
 }
 
 .list-items {
-  // position: relative;
-  // background: white;
-  // min-height: 288px;
   padding-top: 55px;
 }
 

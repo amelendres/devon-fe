@@ -6,7 +6,7 @@ type DevotionalOpenProps = {
 }
 
 export const DevotionalOpen: React.FC<DevotionalOpenProps> = ({ devotional }) => {
-
+  
   return (
     <div className={`devotional `}>
       <div className="pt10"/>

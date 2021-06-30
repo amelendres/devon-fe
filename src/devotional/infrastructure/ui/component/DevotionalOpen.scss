@@ -9,32 +9,34 @@
 .devotional{
     padding: .7rem;
     padding-top: 55px;
-   }
-   .devotional .title{
+
+    .title{
       line-height: 2rem;
       text-align: center;
       font-weight: bold;
-   }
+    }
   
-  .devotional .passage{
-    font-family: Times;
-    font-style: italic;
-    font-size: 1.09rem;
-    line-height: 1.4rem;
-  }
+    .passage{
+        font-family: Times;
+        font-style: italic;
+        font-size: 1.09rem;
+        line-height: 1.4rem;
+    }
   
-  .devotional .text{
-    text-align: justify;
-  }
-  .devotional .reference{
-    text-align: right;
-  }
-  .devotional .content{
-    line-height: 1.7rem;
-  }
-  .devotional .content p{
-    margin-top: 1.5rem;
-  }
+    .text{
+        text-align: justify;
+    }
+    .reference{
+        text-align: right;
+    }
+    .content{
+        line-height: 1.7rem;
+    }
+    .content p{
+        margin-top: 1.5rem;
+    }
+}
+
   .pt20{
      padding-top:20px;
    }

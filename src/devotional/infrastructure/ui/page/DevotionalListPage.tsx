@@ -1,19 +1,17 @@
 import React from 'react'
+import { RouteComponentProps } from "react-router-dom";
+
 import {DevotionalList} from '../component/DevotionalList'
 import HelmetMetaData from '../../../../common/infrastructure/ui/component/seo/HelmetMetaData'
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 import { app } from '../App'
 
-import {RouteComponentProps} from "react-router-dom";
 import { planService } from '../../../application/Plan.service'
 
 import {history} from '../../../../common/domain/history'
 
-const CURRENT_PLAN = 'plan-2019'
-
 type TParams = { 
-  planSlug: string,
-  devotionalSlug: string,
+  planSlug: string
 }
 
 export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ match }: RouteComponentProps<TParams>) => {
@@ -21,10 +19,9 @@ export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ mat
   const [plan, setPlan] = React.useState<YearlyPlan>()
 
   React.useEffect(() => {
-    planService.plan(CURRENT_PLAN).then(setPlan)
-  }, [])
-
-  history.push('/');
+    planService.plan(match.params.planSlug).then(setPlan)
+    history.push(`/${match.params.planSlug}`)
+  }, [match.params.planSlug])
 
   if (plan === undefined) {
     return (

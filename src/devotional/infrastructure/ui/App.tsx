@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import { DevotionalListPage as Home } from './page/DevotionalListPage'
+import { DevotionalListPage } from './page/DevotionalListPage'
 import { DevotionalPage } from './page/DevotionalPage'
 
 export const app = {
@@ -22,18 +22,23 @@ export const defaultPlan = {
   image: `${process.env.PUBLIC_URL}/devocionales-margarita-burt.jpg`
 }
 
+const CURRENT_PLAN = '/plan-2019'
+
 type AppProps = {
   msg: string
 }
 
 const App: React.FC<AppProps> = ({ msg }) => {
   return (
-    <div className="App">
+    <div id="content-container" className="App">
       {/* <h1>{msg}</h1> */}
-      <Router>
-        <Route exact path="/" component={Home}/>
-        <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
-      </Router>
+      <BrowserRouter>
+          <Switch>
+             <Redirect exact from="/" to={CURRENT_PLAN} />
+              <Route exact path="/:planSlug" component={DevotionalListPage}/>
+              <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
+          </Switch>
+        </BrowserRouter>
     </div>
   )
 }

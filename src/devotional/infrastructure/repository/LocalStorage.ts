@@ -1,7 +1,7 @@
 
 const expirationKey =  'expiresAfter'
 const updatedAtKey =  'updatedAt'
-const expiresAfter = 7200
+const expiresAfter = 25200000
 
 export const localStorageCache = {
   get: (key:string) => {
