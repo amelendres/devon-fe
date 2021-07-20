@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import { DevotionalListPage } from './page/DevotionalListPage'
+import { PlanListPage } from './page/PlanListPage'
 import { DevotionalPage } from './page/DevotionalPage'
 
 export const app = {
@@ -35,6 +36,7 @@ const App: React.FC<AppProps> = ({ msg }) => {
       <BrowserRouter>
           <Switch>
              <Redirect exact from="/" to={CURRENT_PLAN} />
+              <Route exact path="/plans" component={PlanListPage}/>
               <Route exact path="/:planSlug" component={DevotionalListPage}/>
               <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
           </Switch>

@@ -4,9 +4,9 @@ export const planService = {
   getDevotionals: (planSlug: string) => {
     return planRepository.dailyDevotionals(planSlug)
   },
-  // getCurrent: () => {
-  //   return planRepository.plan()
-  // },
+  plans: () => {
+    return planRepository.all()
+  },
   plan: (slug: string) => {
     return planRepository.get(slug)
   },
