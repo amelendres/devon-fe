@@ -1,6 +1,5 @@
 import { DailyDevotional } from './DailyDevotional'
-
-export type PlanId = string
+import { PlanId } from './Plan'
 
 export type YearlyPlan = {
   id: PlanId

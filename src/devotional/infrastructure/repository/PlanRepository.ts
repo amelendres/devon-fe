@@ -6,8 +6,8 @@ import { defaultPlan } from '../ui/App'
 import { localStorageCache } from './LocalStorage'
 
 
-const DEVOM_API_URL = 'https://proservant-staging.herokuapp.com/api/v1'
-// const DEVOM_API_URL = 'http://localhost:8030/api/v1'
+// const DEVOM_API_URL = 'https://proservant-staging.herokuapp.com/api/v1'
+const DEVOM_API_URL = 'http://localhost:8030/api/v1'
 // const YEARLY_PLAN_ID = '1bec054b-ec6c-4ec0-becc-1a46bee429fb'
 const PLANS_KEY = 'plans'
 

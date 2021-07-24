@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
+import { SearchPage } from './page/SearchPage'
 import { DevotionalListPage } from './page/DevotionalListPage'
 import { PlanListPage } from './page/PlanListPage'
 import { DevotionalPage } from './page/DevotionalPage'
@@ -30,12 +31,14 @@ type AppProps = {
 }
 
 const App: React.FC<AppProps> = ({ msg }) => {
+
   return (
     <div id="content-container" className="App">
       {/* <h1>{msg}</h1> */}
       <BrowserRouter>
           <Switch>
              <Redirect exact from="/" to={CURRENT_PLAN} />
+              <Route exact path="/search" component={SearchPage}/>
               <Route exact path="/plans" component={PlanListPage}/>
               <Route exact path="/:planSlug" component={DevotionalListPage}/>
               <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
