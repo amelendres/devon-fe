@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 
 import { DevotionalItem } from '../../../../domain/Plan'
 
+const MAX_LENGTH = 200
+
 type ItemProps = {
   item: DevotionalItem,
   index: number,
@@ -17,11 +19,15 @@ export const Item: React.FC<ItemProps> = ({ item, index, onOpenDevotional }) => 
        <div className="index">
         <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{index}</Link>
       </div>
-      <div className="title">
-        <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{item.devotional.title}</Link>
-      </div>
       <div className="preview">
-        {/* <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{item.devotional.content}</Link> */}
+        <div className="title">
+          <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{item.devotional.title}
+          <span className="content">
+            {`${item.devotional.content.substring(0, MAX_LENGTH)}...`}
+          </span>
+          </Link>
+        </div>
+
       </div>
     </div>
   );

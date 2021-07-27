@@ -1,0 +1,27 @@
+@import '../stylesheet/sass/utils.scss';
+
+.page.search {
+  .list-item{
+    height: auto;
+
+    .index{
+      // width: 3.8rem;
+    }
+    .preview{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre-wrap;
+      flex: 1 1;
+      padding-right: 1rem;
+
+      .title{
+        white-space: pre-wrap;
+      }
+      .content{
+        color: $color-medium;
+        display: block;
+        line-height: 1.2rem;
+      }
+    }
+  }
+}
