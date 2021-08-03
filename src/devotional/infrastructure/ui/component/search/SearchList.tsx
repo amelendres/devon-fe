@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { Item } from './Item'
+import { SearchItem } from './SearchItem'
 
 import { DevotionalItem } from '../../../../domain/Plan'
 
-type ListProps = {
+type SearchListProps = {
   items: DevotionalItem[]
 }
 
-export const List: React.FC<ListProps> = ({ items }) => {
+export const SearchList: React.FC<SearchListProps> = ({ items }) => {
 
   const handleOpenDevotional = (slug: string) => {
     console.log(slug)
@@ -16,7 +16,7 @@ export const List: React.FC<ListProps> = ({ items }) => {
   return (
     <div className="list-items">
       {items.map((item, index) => (
-      <Item key={index} item={item} 
+      <SearchItem key={index} item={item} 
       index={index} onOpenDevotional={handleOpenDevotional}/>
       ))}
     </div>

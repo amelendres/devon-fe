@@ -1,6 +1,26 @@
 @import '../stylesheet/sass/utils.scss';
 
 .page.search {
+
+  .input-symbol{
+    display: block;
+
+    input{
+      padding: 0.26rem 0;
+      padding-left: 3em;
+    }
+  }
+
+  .icon-search {
+    color: #eee;
+    background: transparent;
+    font-family: percolate;
+
+    &:before {
+      content: "\e64b";
+    }
+  }
+
   .list-item{
     height: auto;
 

@@ -5,13 +5,13 @@ import { DevotionalItem } from '../../../../domain/Plan'
 
 const MAX_LENGTH = 200
 
-type ItemProps = {
+type SearchItemProps = {
   item: DevotionalItem,
   index: number,
   onOpenDevotional: (slug: string) => void
 }
 
-export const Item: React.FC<ItemProps> = ({ item, index, onOpenDevotional }) => {
+export const SearchItem: React.FC<SearchItemProps> = ({ item, index, onOpenDevotional }) => {
 
   const state = 'show' //showed|opened|read
   return (
