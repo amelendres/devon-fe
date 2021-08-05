@@ -26,29 +26,40 @@ export const SearchPage: React.FC<SearchPageProps> = () => {
 
   React.useEffect(() => {
     setSearching(0)
-    onChangeQueryHandler(q)
+    setQuery(q);
+    if (q === "") {
+      setItems([])
+      return
+    }
+    searchService.search(q).then(setItems)
+    
   }, [q])
 
   const onChangeQueryHandler = (q:string) => {
+    setQuery(q);
 
     if (searching) {
-      console.log("searching: %j",searching)
+      console.log("onChangeQueryHandler searching: %s",searching)
       clearTimeout(searching);
-   }
+    }
+
+    if (q === "") {
+      setItems([])
+      return
+    }
 
     setSearching(+global.setTimeout(() => {
       console.log(q)
       searchService.search(q).then(setItems)
     }, 1000))
-    setQuery(q);
- }
-
+  }
+  
   const searchList = (items === undefined) 
   ? 
         <div className="wrapper-message">
           <span className="icon-check" />
           <div className="title-message">Searching...</div>
-          <div className="subtitle-message">Sit back and relax</div>
+          {/* <div className="subtitle-message">Sit back and relax</div> */}
         </div>
   : <SearchList  items={items}/>
 
@@ -68,6 +79,7 @@ export const SearchPage: React.FC<SearchPageProps> = () => {
 
           <div className="page search lists-show">
             <nav>
+              {/* <SearchBar query={query??""} onChange={onChangeQueryHandler}/> */}
               <SearchBar query={query??""} onChange={onChangeQueryHandler}/>
             </nav>
               {searchList}

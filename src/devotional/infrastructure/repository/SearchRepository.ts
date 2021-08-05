@@ -10,9 +10,9 @@ const DEVOM_API_URL = 'http://localhost:8030/api/v1'
 
 export const searchRepository = {
   search: async (query: string): Promise<DevotionalItem[]> => {
-    console.log("\nsearchRepository search.. %j", query)
+    console.log("\nsearchRepository search... %s", query)
     let devotionals = await http.get<DevotionalItem[]>(DEVOM_API_URL+'/search?q='+query)
-    console.log("dailyDevotionals devotionals: %j", devotionals)
+    console.log("dailyDevotionals devotionals:", devotionals)
     devotionals.map((item:DevotionalItem) => slugifyDevotionalItem(item))
     // storeDailyDevotionals(planSlug, devotionals)
       

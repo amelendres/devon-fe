@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { SearchPage } from './page/SearchPage'
 import { DevotionalListPage } from './page/DevotionalListPage'
@@ -32,7 +33,10 @@ type AppProps = {
 
 const App: React.FC<AppProps> = ({ msg }) => {
 
+  const helmetContext = {};
+
   return (
+    <HelmetProvider context={helmetContext}>
     <div id="content-container" className="App">
       {/* <h1>{msg}</h1> */}
       <BrowserRouter>
@@ -43,8 +47,9 @@ const App: React.FC<AppProps> = ({ msg }) => {
               <Route exact path="/:planSlug" component={DevotionalListPage}/>
               <Route path={`/:planSlug/:devotionalSlug`} component={DevotionalPage} />
           </Switch>
-        </BrowserRouter>
+      </BrowserRouter>
     </div>
+    </HelmetProvider>
   )
 }
 

@@ -13,16 +13,16 @@ const PLANS_KEY = 'plans'
 
 export const planRepository = {
   dailyDevotionals: async (planSlug: string): Promise<DailyDevotional[]> => {
-    console.log("\nplanRepository dailyDevotionals.. %j", planSlug)
+    console.log("\nplanRepository dailyDevotionals... %s", planSlug)
     let devotionals = localStorageCache.get(planSlug)
     if (devotionals!==undefined) {
-      console.log("dailyDevotionals devotionals (cached): %j", devotionals)
+      console.log("dailyDevotionals devotionals (cached):", devotionals)
       return devotionals.items
     }
 
     const plan = await planRepository.get(planSlug) 
     devotionals = await http.get<DailyDevotional[]>(DEVOM_API_URL+'/yearly-plans/'+plan.id+'/devotionals')
-    console.log("dailyDevotionals devotionals: %j", devotionals)
+    console.log("dailyDevotionals devotionals:", devotionals)
     devotionals.map((item:DailyDevotional) => slugifyDevotional(item))
     storeDailyDevotionals(planSlug, devotionals)
       
@@ -32,7 +32,7 @@ export const planRepository = {
     console.log("\nplanRepository get... %s", planSlug)
     const plans = localStorageCache.get(PLANS_KEY)
     if (plans!==undefined) {
-      console.log("get plans (cached): %j", plans)
+      console.log("get plans (cached):", plans)
       return plans.items.find((item:YearlyPlan) => item.slug === planSlug)
     }
     await planRepository.all()
@@ -44,7 +44,7 @@ export const planRepository = {
 
     const devotionals = localStorageCache.get(planSlug)
     if (devotionals!==undefined) {
-      console.log("\nplanRepository devotionals (cached) %j", devotionals)
+      console.log("\nplanRepository devotionals (cached):", devotionals)
       return devotionals.items.find((item:DailyDevotional) => item.devotional.slug === devotionalSlug)
     }
     
@@ -55,12 +55,12 @@ export const planRepository = {
     console.log("\nplanRepository all")
     let plans = localStorageCache.get(PLANS_KEY)
     if (plans!==undefined) {
-      console.log("all plans (cached): %j", plans)
+      console.log("all plans (cached):", plans)
       return plans.items
     }
 
     plans = await http.get<YearlyPlan[]>(DEVOM_API_URL+'/yearly-plans')
-    console.log("\nall plans: %j", plans)
+    console.log("\nall plans:", plans)
     plans.map((item:YearlyPlan) => slugifyPlan(item))
     storePlans(PLANS_KEY, plans)
 
@@ -69,7 +69,7 @@ export const planRepository = {
 }
 
 const storeDailyDevotionals = (key:string, dailyDevotionals: DailyDevotional[]): void =>{
-  console.log("\nstoreDailyDevotionals %j", dailyDevotionals)
+  console.log("\nstoreDailyDevotionals:", dailyDevotionals)
   const slugs = dailyDevotionals.reduce(function(accumulator, item) {
     return {...accumulator, [item.devotional.slug]: item.devotional.id}
   }, [])
@@ -78,7 +78,7 @@ const storeDailyDevotionals = (key:string, dailyDevotionals: DailyDevotional[]):
 }
 
 const storePlans = (key:string, plans: YearlyPlan[]) =>{
-  console.log("\nstorePlans %j", plans)
+  console.log("\nstorePlans:", plans)
   const slugs = plans.reduce(function(accumulator, item) {
     return {...accumulator, [item.slug]: item.id}
   }, [])

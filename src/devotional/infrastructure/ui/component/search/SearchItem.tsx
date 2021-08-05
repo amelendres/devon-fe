@@ -17,7 +17,7 @@ export const SearchItem: React.FC<SearchItemProps> = ({ item, index, onOpenDevot
   return (
     <div className={`list-item ${state}`} id={`item_${index}`} onClick={() => onOpenDevotional(item.devotional.slug)} >
        <div className="index">
-        <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{index}</Link>
+        <Link to={`/${item.plans[0].slug}/${item.devotional.slug}`}>{index+1}</Link>
       </div>
       <div className="preview">
         <div className="title">
