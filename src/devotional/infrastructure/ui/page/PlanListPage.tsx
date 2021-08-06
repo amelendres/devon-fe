@@ -1,18 +1,17 @@
 import React from 'react'
-import { RouteComponentProps } from "react-router-dom";
 
 import {PlanList} from '../component/PlanList'
 import HelmetMetaData from '../../../../common/infrastructure/ui/component/seo/HelmetMetaData'
+
 import { YearlyPlan } from '../../../domain/YearlyPlan'
 import { app } from '../App'
 
 import { planService } from '../../../application/Plan.service'
 
-type TParams = { 
+type PlanListPageProps = { 
 }
 
-export const PlanListPage: React.FC<RouteComponentProps<TParams>> = ({ match }: RouteComponentProps<TParams>) => {
-
+export const PlanListPage: React.FC<PlanListPageProps> = () => {
   const [plans, setPlans] = React.useState<YearlyPlan[]>()
 
   React.useEffect(() => {
@@ -25,7 +24,7 @@ export const PlanListPage: React.FC<RouteComponentProps<TParams>> = ({ match }: 
         <div className="wrapper-message">
           <span className="icon-check" />
           <div className="title-message">Loading...</div>
-          <div className="subtitle-message">Sit back and relax</div>
+          {/* <div className="subtitle-message">Sit back and relax</div> */}
         </div>
       </div>
     );
@@ -51,7 +50,7 @@ export const PlanListPage: React.FC<RouteComponentProps<TParams>> = ({ match }: 
                 <span className="_title-wrapper">Planes</span>
               </h1>
             </nav>
-              <PlanList />
+              <PlanList plans={plans}/>
           </div>
         </div>
       );

@@ -1,0 +1,47 @@
+@import '../stylesheet/sass/utils.scss';
+
+.page.search {
+
+  .input-symbol{
+    display: block;
+
+    input{
+      padding: 0.26rem 0;
+      padding-left: 3em;
+    }
+  }
+
+  .icon-search {
+    color: #eee;
+    background: transparent;
+    font-family: percolate;
+
+    &:before {
+      content: "\e64b";
+    }
+  }
+
+  .list-item{
+    height: auto;
+
+    .index{
+      // width: 3.8rem;
+    }
+    .preview{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre-wrap;
+      flex: 1 1;
+      padding-right: 1rem;
+
+      .title{
+        white-space: pre-wrap;
+      }
+      .content{
+        color: $color-medium;
+        display: block;
+        line-height: 1.2rem;
+      }
+    }
+  }
+}

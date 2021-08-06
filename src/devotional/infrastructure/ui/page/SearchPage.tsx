@@ -1,7 +1,8 @@
 import React from 'react'
 import { useLocation} from "react-router-dom";
 
-import {List as SearchList} from '../component/search/List'
+import {SearchBar} from '../component/search/SearchBar'
+import {SearchList} from '../component/search/SearchList'
 import HelmetMetaData from '../../../../common/infrastructure/ui/component/seo/HelmetMetaData'
 import { DevotionalItem } from '../../../domain/Plan'
 import { app } from '../App'
@@ -16,27 +17,51 @@ type SearchPageProps = {
 }
 
 export const SearchPage: React.FC<SearchPageProps> = () => {
-
+  const [query, setQuery] = React.useState<string>()
   const [items, setItems] = React.useState<DevotionalItem[]>()
-  // const [query, setQuery] = React.useState<string>()
+  const [searching, setSearching] = React.useState<number>()
+
   const queryParams = useQuery();
-  const query = queryParams.get("q")??""
+  const q = queryParams.get("q")??""
 
   React.useEffect(() => {
-    searchService.search(query).then(setItems)
-  }, [query])
+    setSearching(0)
+    setQuery(q);
+    if (q === "") {
+      setItems([])
+      return
+    }
+    searchService.search(q).then(setItems)
+    
+  }, [q])
 
-  if (items === undefined) {
-    return (
-      <div className="devotinals list-items">
+  const onChangeQueryHandler = (q:string) => {
+    setQuery(q);
+
+    if (searching) {
+      console.log("onChangeQueryHandler searching: %s",searching)
+      clearTimeout(searching);
+    }
+
+    if (q === "") {
+      setItems([])
+      return
+    }
+
+    setSearching(+global.setTimeout(() => {
+      console.log(q)
+      searchService.search(q).then(setItems)
+    }, 1000))
+  }
+  
+  const searchList = (items === undefined) 
+  ? 
         <div className="wrapper-message">
           <span className="icon-check" />
           <div className="title-message">Searching...</div>
-          <div className="subtitle-message">Sit back and relax</div>
+          {/* <div className="subtitle-message">Sit back and relax</div> */}
         </div>
-      </div>
-    );
-  }
+  : <SearchList  items={items}/>
 
       const meta = {
         title: `planes | ${app.title}`,
@@ -54,11 +79,10 @@ export const SearchPage: React.FC<SearchPageProps> = () => {
 
           <div className="page search lists-show">
             <nav>
-              <h1 className="title-page">
-                <span className="_title-wrapper">Resultados</span>
-              </h1>
+              {/* <SearchBar query={query??""} onChange={onChangeQueryHandler}/> */}
+              <SearchBar query={query??""} onChange={onChangeQueryHandler}/>
             </nav>
-              <SearchList  items={items}/>
+              {searchList}
           </div>
         </div>
       );

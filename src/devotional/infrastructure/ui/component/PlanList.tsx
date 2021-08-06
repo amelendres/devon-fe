@@ -2,26 +2,21 @@ import * as React from 'react'
 import { PlanItem } from './PlanItem'
 
 import { YearlyPlan } from '../../../domain/YearlyPlan'
-import { planService } from '../../../application/Plan.service'
 
-type DevotionalListProps = {
+type PlanListProps = {
+  plans: YearlyPlan[]
 }
 
-export const PlanList: React.FC<DevotionalListProps> = () => {
-  const [plans, setPlans] = React.useState<YearlyPlan[]>([])
+export const PlanList: React.FC<PlanListProps> = ({plans}) => {
 
-  React.useEffect(() => {
-    planService.plans().then(setPlans)
-  }, [])
-
-  const handleOpenPlan = (slug: string) => {
+  const onOpenPlanHandler = (slug: string) => {
     console.log(slug)
   }
 
   return (
     <div className="list-items">
-      {plans.map((plan) => (
-      <PlanItem key={plan.id} plan={plan} index={plan.year} onOpenPlan={handleOpenPlan}/>
+      {plans.map((plan:YearlyPlan) => (
+      <PlanItem key={plan.id} plan={plan} index={plan.year} onOpenPlan={onOpenPlanHandler}/>
       ))}
     </div>
   )

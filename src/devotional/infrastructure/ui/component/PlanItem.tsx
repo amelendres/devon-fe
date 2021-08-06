@@ -22,7 +22,7 @@ export const PlanItem: React.FC<PlanItemProps> = ({ plan, index, onOpenPlan }) =
       </div>
       <div className="actions" onClick={event => event.stopPropagation()}>
         {/* 'TODO SHOW READRING PROGRESS' */}
-
+        
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export const DevotionalListPage: React.FC<RouteComponentProps<TParams>> = ({ mat
         <div className="wrapper-message">
           <span className="icon-check" />
           <div className="title-message">Loading...</div>
-          <div className="subtitle-message">Sit back and relax</div>
+          {/* <div className="subtitle-message">Sit back and relax</div> */}
         </div>
       </div>
     );
